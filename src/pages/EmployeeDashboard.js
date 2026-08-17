@@ -7,6 +7,7 @@ import ExceptionForm from '../components/Exceptions/ExceptionForm';
 import ExceptionList from '../components/Exceptions/ExceptionList';
 import LeaveForm from '../components/Leave/LeaveForm';
 import LeaveList from '../components/Leave/LeaveList';
+import { Container, Grid, Paper, Typography } from '@mui/material';
 
 const EmployeeDashboard = () => {
   const userId = localStorage.getItem('userId');

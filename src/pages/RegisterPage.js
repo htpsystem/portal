@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import API from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { Container, TextField, Button, Typography, Box, MenuItem } from '@mui/material';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -22,24 +23,29 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <input type="text" placeholder="Name" value={name}
-               onChange={(e) => setName(e.target.value)} required />
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="employee">Employee</option>
-          <option value="admin">Admin</option>
-        </select>
-        <input type="text" placeholder="Department" value={department}
-               onChange={(e) => setDepartment(e.target.value)} />
-        <input type="email" placeholder="Email" value={email}
-               onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password}
-               onChange={(e) => setPassword(e.target.value)} required />
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    <Container maxWidth="sm">
+      <Box sx={{ mt: 8, p: 4, boxShadow: 3, borderRadius: 2 }}>
+        <Typography variant="h4" gutterBottom>Register</Typography>
+        <form onSubmit={handleRegister}>
+          <TextField fullWidth label="Name" margin="normal"
+                     value={name} onChange={(e) => setName(e.target.value)} required />
+          <TextField select fullWidth label="Role" margin="normal"
+                     value={role} onChange={(e) => setRole(e.target.value)}>
+            <MenuItem value="employee">Employee</MenuItem>
+            <MenuItem value="admin">Admin</MenuItem>
+          </TextField>
+          <TextField fullWidth label="Department" margin="normal"
+                     value={department} onChange={(e) => setDepartment(e.target.value)} />
+          <TextField fullWidth label="Email" type="email" margin="normal"
+                     value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <TextField fullWidth label="Password" type="password" margin="normal"
+                     value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <Button variant="contained" color="primary" type="submit" fullWidth sx={{ mt: 2 }}>
+            Register
+          </Button>
+        </form>
+      </Box>
+    </Container>
   );
 };
 
