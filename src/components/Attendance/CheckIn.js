@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import API from '../../services/api';
+import {
+  Card,
+  CardContent,
+  Typography,
+  TextField,
+  Button,
+  Box
+} from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
 
 const CheckIn = () => {
   const [shiftId, setShiftId] = useState('');
@@ -19,16 +28,40 @@ const CheckIn = () => {
   };
 
   return (
-    <div>
-      <h3>Check In</h3>
-      <form onSubmit={handleCheckIn}>
-        <input type="text" placeholder="Shift ID" value={shiftId}
-               onChange={(e) => setShiftId(e.target.value)} required />
-        <input type="text" placeholder="GPS Location" value={gpsLocation}
-               onChange={(e) => setGpsLocation(e.target.value)} required />
-        <button type="submit">Check In</button>
-      </form>
-    </div>
+    <Card elevation={1} sx={{ borderRadius: 2 , mt: 4 }}>
+      <CardContent>
+        <Typography variant="h6" fontWeight="bold" gutterBottom>
+          Check In
+        </Typography>
+        <Box component="form" onSubmit={handleCheckIn} sx={{ mt: 2 }}>
+          <TextField
+            fullWidth
+            label="Shift ID"
+            value={shiftId}
+            onChange={(e) => setShiftId(e.target.value)}
+            margin="normal"
+            required
+          />
+          <TextField
+            fullWidth
+            label="GPS Location"
+            value={gpsLocation}
+            onChange={(e) => setGpsLocation(e.target.value)}
+            margin="normal"
+            required
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            startIcon={<LoginIcon />}
+            sx={{ mt: 2 }}
+          >
+            Check In
+          </Button>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import API from '../../services/api';
+import {
+  Card,
+  CardContent,
+  Typography,
+  TextField,
+  Button,
+  Box
+} from '@mui/material';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 const LeaveForm = () => {
   const [startDate, setStartDate] = useState('');
@@ -16,16 +25,44 @@ const LeaveForm = () => {
   };
 
   return (
-    <div>
-      <h3>Apply for Leave</h3>
-      <form onSubmit={handleSubmit}>
-        <input type="date" value={startDate}
-               onChange={(e) => setStartDate(e.target.value)} required />
-        <input type="date" value={endDate}
-               onChange={(e) => setEndDate(e.target.value)} required />
-        <button type="submit">Submit Leave</button>
-      </form>
-    </div>
+    <Card elevation={1} sx={{ borderRadius: 2, mt: 4 }}>
+      <CardContent>
+        <Typography variant="h6" fontWeight="bold" gutterBottom>
+          Apply for Leave
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+          <TextField
+            fullWidth
+            label="Start Date"
+            type="date"
+            InputLabelProps={{ shrink: true }}
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            margin="normal"
+            required
+          />
+          <TextField
+            fullWidth
+            label="End Date"
+            type="date"
+            InputLabelProps={{ shrink: true }}
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            margin="normal"
+            required
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            startIcon={<EventAvailableIcon />}
+            sx={{ mt: 2 }}
+          >
+            Submit Leave
+          </Button>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

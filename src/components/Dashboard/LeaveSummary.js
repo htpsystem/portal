@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
@@ -15,7 +16,9 @@ const LeaveSummary = ({ data }) => {
 
   return (
     <div>
-      <h3>Leave Summary</h3>
+      <Typography variant="h6" gutterBottom fontWeight="bold">
+        Leave Summary
+      </Typography>
       <Doughnut data={chartData} />
     </div>
   );
