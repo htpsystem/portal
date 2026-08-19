@@ -5,11 +5,13 @@ import RegisterPage from './pages/RegisterPage';
 import AdminDashboard from './pages/AdminDashboard';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   return (
-    <Router>
-      <Routes>
+    <UserProvider>
+      <Router>
+        <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/admin-dashboard" element={
@@ -21,9 +23,10 @@ function App() {
           <ProtectedRoute allowedRoles={['employee']}>
             <EmployeeDashboard />
           </ProtectedRoute>
-        } />
-      </Routes>
-    </Router>
+          } />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
 }
 
