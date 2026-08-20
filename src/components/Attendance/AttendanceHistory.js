@@ -12,20 +12,20 @@ import {
   Divider
 } from '@mui/material';
 
-const AttendanceHistory = ({ userId }) => {
+const AttendanceHistory = () => {
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const res = await API.get(`/attendance/${userId}`);
+        const res = await API.get(`/attendance`);
         setLogs(res.data);
       } catch (err) {
         alert('Error fetching attendance: ' + err.response.data.error);
       }
     };
     fetchLogs();
-  }, [userId]);
+  }, []);
 
   return (
     <Card elevation={1} sx={{ borderRadius: 2,mt: 4 }}>

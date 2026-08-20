@@ -13,20 +13,21 @@ import {
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PlaceIcon from '@mui/icons-material/Place';
 
-const ShiftList = ({ userId }) => {
+const ShiftList = () => {
   const [shifts, setShifts] = useState([]);
 
   useEffect(() => {
     const fetchShifts = async () => {
       try {
-        const res = await API.get(`/shifts/${userId}`);
+        const res = await API.get('/shifts');
         setShifts(res.data);
       } catch (err) {
-        alert('Error fetching shifts: ' + err.response.data.error);
+        alert('Error fetching shifts: ' + (err.response?.data?.error || err.message));
       }
     };
     fetchShifts();
-  }, [userId]);
+  }, []);
+
 
   return (
     <Card elevation={1} sx={{ borderRadius: 2 }}>
@@ -60,6 +61,7 @@ const ShiftList = ({ userId }) => {
                   }
                 />
               </ListItem>
+
             ))}
           </List>
         )}
